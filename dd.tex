@@ -44,7 +44,7 @@ base of potential users.
 At its core, Kairos will be a web-based schedule solver; it will accept parameters from the user, specifying the
 details of their particular scheduling problem.  The tool will analyze the input and algorithmically determine a
 schedule that will meet all of the supplied parameters.  If meeting all of the constraints is not possible, it will
-priortize based on weights and determine what compromises to make in the schedule.
+prioritize based on weights and determine what compromises to make in the schedule.
 
 Since the tool will be web-based, it will be open to any and all potential users.  This will further encourage a
 wide breadth of users.
@@ -67,7 +67,7 @@ driving them away.
 % EXPLAIN WHY THE PROJECT IS INTERESTING AND WORTHWHILE
 %   - why a completed project will be beneficial
 Making this tool available to the public will potentially save individuals a great deal of time, may provide
-organizations better sheduling solutions than they currently have, and could potentially save a great deal
+organizations better scheduling solutions than they currently have, and could potentially save a great deal
 of money for businesses and other organizations.  At the very least it is our hope that we will make life a little
 easier for as many users as possible.
 
@@ -82,6 +82,19 @@ organizations of all sizes.
 \subsubsection{Similar Ideas}
 % list, describe other software systems that do what ours will do
 % explain why our idea is different and/or better
+Aurora is an existing scheduling system. However, from our understanding, Aurora, as well as many other scheduling solutions such as Microsoft Project, Primavera, or Open Workbench, focus on project scheduling with multiple task sequences, or critical paths, in which previous tasks need to be completed before the next one can begin.
+
+Figure \ref{fig:aurora}, taken from Aurora's website, is an example of its usage. In this figure, activities 1, 5, and 6 (the ones in red) must be executed sequentially in that order, hence the name critical path. Also noted that all the activities in the figure last more than or equal to one day. That's how a usual project task is, it either lasts for a couple of days, or requires, for instance, 20 hours/week to complete (for Open Workbench). Because of this, these systems are not really suitable for scheduling meetings or events that need ``small" specific time slots with no actual ``critical path" most of the time. They may be used and/or tweaked to do this, but the experience probably won't be good since that's not what the systems are designed for.
+
+This is where our system shines. We want to create a system that can apply resource-constraint into meeting/event scheduling, just as how it's been done with project scheduling. The system will support fine-grained control over possible time blocks. It will allow users to specify available resources (human, room, capacity, and so on), and constraints via a uniform, easy-to-understand API. Not only that, the users will also be able to edit the suggested schedule easily to better suit their need and preference.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=90mm]{aurora.jpg}
+\caption{Aurora scheduling example}
+\label{fig:aurora}
+\end{figure}
+
 
 \subsection{Required Technology}
 % list, describe software technologies that you will:
