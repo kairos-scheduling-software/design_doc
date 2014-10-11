@@ -75,38 +75,89 @@ easier for as many users as possible.
 
 \subsection{Overview} % ONE TO THREE PAGES
 %   - why our project is needed
-Scheduling is a problem that is faced in some way by all individuals as well as groups, teams, and other
-organizations of all sizes.  
+The task of creating optimal schedules is a problem that event planners, groups, teams, and other organizations of
+all sizes encounter on a regular basis.  The schedules used by these groups are often created manually.  For all
+but the simplest schedules, this task is extremely complicated and time consuming.  As the complexity increases,
+the difficulty of creating acceptable schedules, much less optimal ones, increases exponentially.
+
 %   - what problems it solves
+Moving as much of the work of scheduling from a manual process to one that is solved by a computer is the
+inspiration for Kairos.  Kairos has the potential to save a great deal of time for users.  Kairos will provide a
+better solution for those who need to schedule any but the simplest of events.
+
 %   - who will use it
+Since scheduling is a ubiquitous problem, Kairos will be usable to large number of users.  By implementing a
+well-documented API we intend to attract those who seek a solution that they can tweak to fit their specific needs.
+
+A specific use case that we have identified is the School of Computing at the University of Utah.  We are working
+with staff in the department to provide a solution to their problem of scheduling classes each semester.
+
 \subsubsection{Similar Ideas}
 % list, describe other software systems that do what ours will do
+We have identified two software systems that address the scheduling problem in some manner similar to that which
+we are aiming at.  These systems are Aurora Intelligent Planning and Scheduling System (Aurora) and Microsoft
+Project (MS Project).  To be sure, there are other software systems out there, but these are adequate to represent
+the current state of this space.
+
+\subsubsection{How Kairos is Different}
 % explain why our idea is different and/or better
-Aurora is an existing scheduling system. However, from our understanding, Aurora, as well as many other scheduling solutions such as Microsoft Project, Primavera, or Open Workbench, focus on project scheduling with multiple task sequences, or critical paths, in which previous tasks need to be completed before the next one can begin.
+Based on their literature, Aurora addresses the needs that we are attempting to address more than adequately.
+However, they are focused on supplying solutions to very large organizations with correspondingly very large
+scheduling problems.  We would like to address the needs of the smaller users for which the Aurora software would
+be overkill.
 
-Figure \ref{fig:aurora}, taken from Aurora's website, is an example of its usage. In this figure, activities 1, 5, and 6 (the ones in red) must be executed sequentially in that order, hence the name critical path. Also noted that all the activities in the figure last more than or equal to one day. That's how a usual project task is, it either lasts for a couple of days, or requires, for instance, 20 hours/week to complete (for Open Workbench). Because of this, these systems are not really suitable for scheduling meetings or events that need ``small" specific time slots with no actual ``critical path" most of the time. They may be used and/or tweaked to do this, but the experience probably won't be good since that's not what the systems are designed for.
+While MS Project does include scheduling tools in the software package, the larger goal of MS Project is to provide
+project management software.  Thus, their software is attempting to address a problem with a wider scope than we
+are focused on.  Based on reading the literature on their software, it is not clear that the scheduling tools 
+provided in MS Project are constraint-based scheduling tools.
 
-This is where our system shines. We want to create a system that can apply resource-constraint into meeting/event scheduling, just as how it's been done with project scheduling. The system will support fine-grained control over possible time blocks. It will allow users to specify available resources (human, room, capacity, and so on), and constraints via a uniform, easy-to-understand API. Not only that, the users will also be able to edit the suggested schedule easily to better suit their need and preference.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=90mm]{aurora.jpg}
-\caption{Aurora scheduling example}
-\label{fig:aurora}
-\end{figure}
-
+Both Aurora and MS Project cost money.  Our software will be free.  Neither Aurora or MS Project are web-based, but
+require installation on any machine that will use the software.  There is certainly room for our tool in this
+space.
 
 \subsection{Required Technology}
 % list, describe software technologies that you will:
 %   - need to implement
 %   - need to utilize
+Our project can be broken down into three main components:  a core web service, specific modules that connect to
+it, and an API that handles communication between the two.  We will discuss the technologies we plan to utilize in
+developing each of these three components.
 
+\subsubsection{Core Web Service}
+This is where the logic for the schedule solver will live.  This web service will be centered around the transfer
+of data through requests and responses.  Our web service will use API keys to restrict access.  In order to
+authenticate users, we will store these keys in a MySQL database.  This will make our web service more secure.
+
+\subsubsection{SoC Module}
+We will create a module for the School of Computing that connects to our web service.  This module will be a web
+application that allows the user to specify the events (classes) to be scheduled, the resources to be used
+(professors, rooms, etc.), and the constraints for both classes and resources.  When the web service sends back a
+suggested schedule, the user will be provided with different options for viewing the data.  We also plan to provide
+some web scraping tools in order to facilitate the collection of data relevant to scheduling classes.
+
+This module with have a PHP backend, along with a MySQL database.  The front end will be built using HTML,
+JavaScript, and CSS.  We will utilize jQuery (specifcally ajax) to make asynchronous requests to the web
+service without interrupting the user experience.
+
+\subsubsection{API}
+Our API will use JSON to represent the data being shuttled back and forth between the web service and the modules
+which connect to it.  We plan to provide detailed documentation that will help other developers leverage our
+service in their own applications.  To make this documentation readily available and accessible, we will create a
+website where we will publish the API documentation, and also advertise our service.  This site will also be where
+developers can request an API key.
+
+\subsection{Assets and Engines}
 % assets and engines
 %   - how much will be built from scratch
 %   - what resources, assets (and from where) will be leveraged
+The websites we create -- both the API documentation site and the School of Computing module -- will be built using
+the Laravel Artisan PHP framework.  This will provide structure to our web sites, as well as allow us to keep our
+code organized and concise.  Laravel also includes a command line interface which will provide us with shortcuts
+for common tasks, thus allowing us to focus our efforts on more important development tasks.
 
-\subsection{Software/Hardware Requirements}
+\subsection{Software/Hardware Requirements for Users}
 % what hardware, software we will need to successfully installed in order to use our software
-
+Since Kairos will be a web application with all of the intensive computation taking place on our network, the only
+system requirements for users will be a machine running a modern browser with a reasonably fast internet connection.
 
 \end{document}
