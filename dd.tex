@@ -4,6 +4,7 @@
 \usepackage{enumerate}
 \usepackage{amsthm}
 \usepackage{amsmath}
+\usepackage[margin=1.0in]{geometry}
 
 \begin{document}
 
@@ -159,5 +160,54 @@ for common tasks, thus allowing us to focus our efforts on more important develo
 % what hardware, software we will need to successfully installed in order to use our software
 Since Kairos will be a web application with all of the intensive computation taking place on our network, the only
 system requirements for users will be a machine running a modern browser with a reasonably fast internet connection.
+
+\newpage
+
+\appendix
+\section{Use Cases}
+
+\subsection{Entering Data Manually to Create a New Schedule}
+The user will manually type in the data required for Kairos to generate a proposed schedule.
+The steps for this use case are:
+
+\begin{enumerate}
+\item User navigates to Manual Data Entry page
+\item User enters classes and selects 'Next'
+\item User enters rooms and selects 'Next'
+\item User enters professors and selects 'Next'
+\item User enters constraints on room availabilities and selects 'Next'
+\item User enters constraints on professor availabilities and selects 'Create Schedule'
+\end{enumerate}
+
+\subsection{Uploading a CSV File to Create a New Schedule}
+The user will generate a proposed schedule by uploading the required data via a .csv file.  The steps
+for this use case are:
+
+\begin{enumerate}
+\item User navigates to CSV Import page
+\item User enters file path for file to upload and selects 'Next'
+\item User maps columns from the file to classes, rooms, professors, room constraints, professor constraints and
+selects 'Create Schedule'
+\end{enumerate}
+
+% ADD THE RELATED UI
+
+\subsection{Modifying a Proposed Schedule}
+The user will select events (classes) in an existing schedule to be modified and submit the modified problem
+parameters to Kairos in order to receive a new proposed schedule.  The steps for this use case are:
+
+\begin{enumerate}
+\item User right clicks on an instance of an event and selects 'Mark for Modification'
+\item Once all events the user wants to modify are thusly marked, the user selects 'Modify Marked Events'
+\item For each event, the user modifies the resources/constraints and selects 'Next'
+\item Once all modifications are entered, user selects 'Modify Schedule'
+\end{enumerate}
+
+% ADD THE RELATED UI
+
+\subsection{Comparing Two Schedules}
+
+\subsection{Administrative Tasks}
+
 
 \end{document}
