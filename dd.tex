@@ -167,46 +167,66 @@ system requirements for users will be a machine running a modern browser with a 
 \section{Use Cases}
 
 \subsection{Entering Data Manually to Create a New Schedule}
-The user will manually type in the data required for Kairos to generate a proposed schedule.
-The steps for this use case are:
+The user will manually enter the data required for the system to generate a proposed schedule.  The steps for this
+use case are:
 
 \begin{enumerate}
 \item User navigates to Manual Data Entry page
+\item System prompts user to enter classes
 \item User enters classes and selects 'Next'
+\item System prompts user to enter rooms
 \item User enters rooms and selects 'Next'
+\item System prompts user to enter professors
 \item User enters professors and selects 'Next'
+\item System prompts user to enter constraints on room availabilities
 \item User enters constraints on room availabilities and selects 'Next'
+\item System prompts user to enter constraints on professor availabilities
 \item User enters constraints on professor availabilities and selects 'Create Schedule'
+\item System calculates and returns a proposed schedule to user
 \end{enumerate}
 
 \subsection{Uploading a CSV File to Create a New Schedule}
-The user will generate a proposed schedule by uploading the required data via a .csv file.  The steps
-for this use case are:
+The user will generate a proposed schedule by uploading the required data via a .csv file.  The steps for this use
+case are:
 
 \begin{enumerate}
+\item User prepares spreadsheet for upload
 \item User navigates to CSV Import page
-\item User enters file path for file to upload and selects 'Next'
-\item User maps columns from the file to classes, rooms, professors, room constraints, professor constraints and
-selects 'Create Schedule'
+\item System prompts user to enter path to file for upload
+\item User enters path and selects 'Upload'
+\item System reads scheduling data from file, calculates and returns a proposed schedule to user
 \end{enumerate}
 
-% ADD THE RELATED UI
+% ADD THE RELATED UI SKETCH
 
 \subsection{Modifying a Proposed Schedule}
-The user will select events (classes) in an existing schedule to be modified and submit the modified problem
-parameters to Kairos in order to receive a new proposed schedule.  The steps for this use case are:
+The user will make modifications to an existing schedule.  They will change the parameters of a given class in
+order to change some feature of the class.  The steps for this use case are:
 
 \begin{enumerate}
-\item User right clicks on an instance of an event and selects 'Mark for Modification'
-\item Once all events the user wants to modify are thusly marked, the user selects 'Modify Marked Events'
-\item For each event, the user modifies the resources/constraints and selects 'Next'
-\item Once all modifications are entered, user selects 'Modify Schedule'
+\item User navigates to one of the View pages on an existing schedule
+\item User right clicks on an instance of a class and selects 'Modify This Class'
+\item System displays the resources and constraints for that class and prompts user to modify as needed
+\item User modifies the resources/constraints and selects 'Modify Schedule'
+\item System calculates and returns a proposed schedule with the modifications to user
 \end{enumerate}
 
-% ADD THE RELATED UI
+% ADD THE RELATED UI SKETCH
 
 \subsection{Comparing Two Schedules}
+The user will select two existing schedules for comparison.  The system will display the discrepancies between the
+two schedules.  The steps for this use case are:
 
+\begin{enumerate}
+\item User creates and saves at least two schedules
+\item User navigates to View Schedules pages
+\item User selects 'Compare Two Schedules'
+\item System prompts user to select two schedules for comparison
+\item User selects two schedules and selects 'Compare'
+\item System calculates the differences between the schedules and displays them simultaneously, highlighting the
+differences
+\end{enumerate}
+  
 \subsection{Administrative Tasks}
 
 
