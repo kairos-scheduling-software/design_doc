@@ -260,16 +260,31 @@ two schedules.  The steps for this use case are:
 \item System calculates the differences between the schedules and displays them simultaneously, highlighting the
 differences
 \end{enumerate}
+
+%ADD THE RELATED UI SKETCH
   
 \subsection{Administrative Tasks}
-The schedule administrator will be able to load, delete, rename, update users who can view the schedule, and accept/reject changes
-made by other users of the schedule.
+The schedule administrator will be able to load, delete, rename, update users who can view the schedule, and accept/reject 
+changes made by other users of the schedule.
 \begin{enumerate}
 \item User creates and saves a schedule
 \item User logs in to the system
 \item User goes to the dashboard
 \item User selects the schedule(s) that need to be updated.
 \item The user can then select their administrative task(i.e. load, delete) on the right sidebar
+\end{enumeration}
+
+%ADD THE RELATED UI SKETCH
+
+\subsection{API use}
+The third party developer will request a key and create their own implementation of a constraint based scheduling 
+system using our api.
+
+\begin{enumerate}
+\item The developer will request an api key
+\item The developer will read the api website to learn how to use our api
+\item The developer will send the request he needs
+\item The system will return json data that the developer can parse and use
 \end{enumeration}
 
 \end{document}
