@@ -4,7 +4,13 @@
 \usepackage{enumerate}
 \usepackage{amsthm}
 \usepackage{amsmath}
+\usepackage[titletoc,title]{appendix}
 \usepackage[margin=1.0in]{geometry}
+\usepackage[hypcap]{caption}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+
+% Needs to be last. Blue links look better to me than red boxes and red links
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
 
 \begin{document}
 
@@ -17,6 +23,7 @@
 \end{titlepage}
 
 \tableofcontents
+\listoffigures
 
 \newpage
 
@@ -163,7 +170,7 @@ system requirements for users will be a machine running a modern browser with a 
 
 \newpage
 
-\appendix
+\begin{appendices}
 \section{Use Cases}
 
 \subsection{Entering Data Manually to Create a New Schedule}
@@ -171,30 +178,62 @@ The user will manually enter the data required for the system to generate a prop
 use case are:
 
 \begin{enumerate}
-\item User navigates to Manual Data Entry page
-\item System prompts user to enter classes
-\item User enters classes and selects 'Next'
-\item System prompts user to enter rooms
-\item User enters rooms and selects 'Next'
-\item System prompts user to enter professors
-\item User enters professors and selects 'Next'
-\item System prompts user to enter constraints on room availabilities
-\item User enters constraints on room availabilities and selects 'Next'
-\item System prompts user to enter constraints on professor availabilities
-\item User enters constraints on professor availabilities and selects 'Create Schedule'
-\item System calculates and returns a proposed schedule to user
+    \item User navigates to Manual Data Entry page
+    \item System prompts user to enter classes
+    \item User enters classes and selects 'Next'
+    \item System prompts user to enter rooms
+    \item User enters rooms and selects 'Next'
+    \item System prompts user to enter professors
+    \item User enters professors and selects 'Next'
+    \item System prompts user to enter constraints on room availabilities
+    \item User enters constraints on room availabilities and selects 'Next'
+    \item System prompts user to enter constraints on professor availabilities
+    \item User enters constraints on professor availabilities and selects 'Create Schedule'
+    \item System calculates and returns a proposed schedule to user
 \end{enumerate}
+
+See the related Figure~\ref{fig:data-entry-classes} on page~\pageref{fig:data-entry-classes}
 
 \subsection{Uploading a CSV File to Create a New Schedule}
 The user will generate a proposed schedule by uploading the required data via a .csv file.  The steps for this use
 case are:
 
 \begin{enumerate}
-\item User prepares spreadsheet for upload
-\item User navigates to CSV Import page
-\item System prompts user to enter path to file for upload
-\item User enters path and selects 'Upload'
-\item System reads scheduling data from file, calculates and returns a proposed schedule to user
+    \item User prepares spreadsheet for upload
+    \item User navigates to CSV Import page
+    \item System prompts user to enter path to file for upload
+    \item User enters path and selects 'Upload'
+    \item System attempts to parse scheduling data from file
+        \begin{enumerate}
+            \item If the parse fails
+            \begin{enumerate}
+                \item Failure is minimal
+                \begin{enumerate}
+                    \item System prompts user to adjust data
+                    \item User adjusts data
+                    \item Return to [5] above
+                \end{enumerate}
+                \item Failure is large
+                \begin{enumerate}
+                    \item System informs user of error
+                    \item System returns user to Dashboard page
+                \end{enumerate}
+            \end{enumerate}
+        \end{enumerate}
+    \item System calculates and returns a proposed schedule to user
+\end{enumerate}
+
+See the related Figure~\ref{fig:upload_page_wireframe} on page~\pageref{fig:upload_page_wireframe}
+
+\subsection{Exporting Schedule as a CSV File}
+The user will download a local copy of a proposed or modified schedule as a .csv file.  The steps for this use
+case are:
+
+\begin{enumerate}
+    \item User navigates to one of the View pages on an existing schedule
+    \item User clicks Export to CSV option
+    \item Browser prompts user to accept download
+    \item Browser begins download of CSV file
 \end{enumerate}
 
 % ADD THE RELATED UI SKETCH
@@ -204,12 +243,15 @@ The user will make modifications to an existing schedule.  They will change the 
 order to change some feature of the class.  The steps for this use case are:
 
 \begin{enumerate}
-\item User navigates to one of the View pages on an existing schedule
-\item User right clicks on an instance of a class and selects 'Modify This Class'
-\item System displays the resources and constraints for that class and prompts user to modify as needed
-\item User modifies the resources/constraints and selects 'Modify Schedule'
-\item System calculates and returns a proposed schedule with the modifications to user
+    \item User navigates to one of the View pages on an existing schedule
+    \item User right clicks on an instance of a class and selects 'Modify This Class'
+    \item System displays the resources and constraints for that class and prompts user to modify as needed
+    \item User modifies the resources/constraints and selects 'Modify Schedule'
+    \item System calculates and returns a proposed schedule with the modifications to user
 \end{enumerate}
+
+See the related Figure~\ref{fig:data-entry-classes} on page~\pageref{fig:data-entry-classes}
+and Figure~\ref{fig:data-entry-rooms} on page~\pageref{fig:data-entry-rooms}
 
 % ADD THE RELATED UI SKETCH
 
@@ -218,16 +260,109 @@ The user will select two existing schedules for comparison.  The system will dis
 two schedules.  The steps for this use case are:
 
 \begin{enumerate}
-\item User creates and saves at least two schedules
-\item User navigates to View Schedules pages
-\item User selects 'Compare Two Schedules'
-\item System prompts user to select two schedules for comparison
-\item User selects two schedules and selects 'Compare'
-\item System calculates the differences between the schedules and displays them simultaneously, highlighting the
-differences
+    \item User creates and saves at least two schedules
+    \item User navigates to the dashboard page
+    \item User selects 'Compare Two Schedules'
+    \item System prompts user to select two schedules for comparison
+    \item User selects two schedules and selects 'Compare'
+    \item System calculates the differences between the schedules and displays them simultaneously, highlighting the
+    differences
 \end{enumerate}
-  
-\subsection{Administrative Tasks}
 
+See the related Figure~\ref{fig:compare_page_wireframe} on page~\pageref{fig:compare_page_wireframe}
+
+\subsection{Administrative Tasks}
+The schedule administrator will be able to load, delete, rename, update users who can view the schedule, and accept/reject
+changes made by other users of the schedule.
+\begin{enumerate}
+    \item User creates and saves a schedule
+    \item User logs in to the system
+    \item User goes to the dashboard
+    \item User selects the schedule(s) that need to be updated.
+    \item The user can then select their administrative task(i.e. load, delete) on the right sidebar
+\end{enumerate}
+
+%ADD THE RELATED UI SKETCH
+
+\subsection{API use}
+The third party developer will request a key and create their own implementation of a constraint based scheduling
+system using our api.
+
+\begin{enumerate}
+    \item The developer will request an api key
+    \item The developer will read the api website to learn how to use our api
+    \item The developer will send the request he needs
+    \item The system will return json data that the developer can parse and use
+\end{enumerate}
+
+\clearpage
+
+\section{UI Sketches}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1.0\textwidth]{img/landing}
+    \caption{Kairos landing screen}
+    \label{fig:landing}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1.0\textwidth]{img/dashboard_02}
+    \caption{User schedule selection dashboard}
+    \label{fig:dashboard_02}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1.0\textwidth]{img/data-entry-classes}
+    \caption{User data entry screen for classes}
+    \label{fig:data-entry-classes}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1.0\textwidth]{img/data-entry-rooms}
+    \caption{User data entry screen for rooms}
+    \label{fig:data-entry-rooms}
+\end{figure}
+
+%\begin{figure}[!ht]
+%  \centering
+%  \includegraphics[width=1.0\textwidth]{dashboard_01}
+%  \caption{dashboard_01}
+%  \label{fig:dashboard_01}
+%\end{figure}
+
+\clearpage{}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1.0\textwidth]{img/full-sched-view}
+    \caption{Visualization of a schedule}
+    \label{fig:full-sched-view}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1.0\textwidth]{img/single-day-view}
+    \caption{Single day visualization of a schedule}
+    \label{fig:single-day-view}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1.0\textwidth]{img/upload_page_wireframe}
+    \caption{Wireframe of UI for user to upload a CSV file}
+    \label{fig:upload_page_wireframe}
+\end{figure}
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1.0\textwidth]{img/compare_page_wireframe}
+    \caption{Wireframe of UI for user to view differences between two schedules}
+    \label{fig:compare_page_wireframe}
+\end{figure}
+\end{appendices}
 
 \end{document}
