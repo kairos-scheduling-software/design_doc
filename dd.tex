@@ -173,15 +173,15 @@ use case are:
 \begin{enumerate}
 \item User navigates to Manual Data Entry page
 \item System prompts user to enter classes
-\item User enters classes and selects 'Next'
+\item User enters classes and selects `Next'
 \item System prompts user to enter rooms
-\item User enters rooms and selects 'Next'
+\item User enters rooms and selects `Next'
 \item System prompts user to enter professors
-\item User enters professors and selects 'Next'
+\item User enters professors and selects `Next'
 \item System prompts user to enter constraints on room availabilities
-\item User enters constraints on room availabilities and selects 'Next'
+\item User enters constraints on room availabilities and selects `Next'
 \item System prompts user to enter constraints on professor availabilities
-\item User enters constraints on professor availabilities and selects 'Create Schedule'
+\item User enters constraints on professor availabilities and selects `Create Schedule'
 \item System calculates and returns a proposed schedule to user
 \end{enumerate}
 
@@ -195,8 +195,8 @@ case are:
 \item User prepares spreadsheet for upload
 \item User navigates to CSV Import page
 \item System prompts user to enter path to file for upload
-\item User enters path and selects 'Upload'
-\item System attempts to parse scheduling data from file
+\item User enters path and selects `Upload'
+\item \label{upload.parse} System attempts to parse scheduling data from file
   \begin{enumerate}
   \item If the parse fails
     \begin{enumerate}
@@ -204,7 +204,7 @@ case are:
       \begin{enumerate}
         \item System prompts user to adjust data
         \item User adjusts data
-        \item Return to [5] above
+        \item Return to [\ref{upload.parse}] above
       \end{enumerate}
     \item Failure is large
       \begin{enumerate}
@@ -229,19 +229,70 @@ case are:
 
 % ADD THE RELATED UI SKETCH
 
-\subsection{Modifying a Proposed Schedule}
-The user will make modifications to an existing schedule.  They will change the parameters of a given class in
-order to change some feature of the class.  The steps for this use case are:
+\subsection{Modifying a Proposed Schedule} \label{usecase.modify}
+The user will make modifications to an existing schedule that they created.  They will change the parameters
+of a given class in order to change some feature of the class.  The steps for this use case are:
 
 \begin{enumerate}
 \item User navigates to one of the View pages on an existing schedule
-\item User right clicks on an instance of a class and selects 'Modify This Class'
+\item User right clicks on an instance of a class and selects `Modify This Class'
 \item System displays the resources and constraints for that class and prompts user to modify as needed
-\item User modifies the resources/constraints and selects 'Modify Schedule'
+\item User modifies the resources/constraints and selects `Modify Schedule'
 \item System calculates and returns a proposed schedule with the modifications to user
 \end{enumerate}
 
 % ADD THE RELATED UI SKETCH
+
+\subsection{Importing a New Schedule}
+
+The user will create a new schedule by uploading a .csv file. This is useful for new users wanting to work on existing schedule created from outside our software. The csv file is similar to that used in importing data use case, but it contains the schedule itself instead of the scheduling data. The steps for this use case are:
+
+\begin{enumerate}
+\item User prepares csv file for upload. The file should contain Class, Time, Room, and Professor as columns as a least.
+\item User clicks on `Import schedule' button from the dashboard
+\item \label{usecase.import_schedule.upload} System prompts user to enter path to file for upload
+\item User enters path and selects `Upload'
+\item System reads schedule information from file, and returns the schedule to user for review
+	\begin{enumerate}
+	\item In case of failure, system shows an error message and returns to step \ref{usecase.import_schedule.upload}
+	\end{enumerate}
+\item User saves the schedule to system.
+\end{enumerate}
+
+See related Figure~\ref{fig:upload_csv} on page~\pageref{fig:upload_csv}.
+
+\subsection{Marking for Schedule Revision}
+
+Users added to a schedule should be able to mark things for future revision. Only the schedule's owner is able to make direct changes (refer to use case \ref{usecase.modify}). The steps for this use case are:
+
+\begin{enumerate}
+\item User opens the schedule from the Dashboard page
+\item \label{usecase.marking.select} On one of the Schedule View pages, user right clicks on an instance of a class and selects `Mark this class for revision'
+\item System prompts user to enter reason for the marking
+\item User enters the reason and click Save
+\item (Optional) System returns to the schedule view page. User can make further marking for revision from there (return to step \ref{usecase.marking.select})
+\end{enumerate}
+
+\subsection{Checking Notification}
+
+User should be able to check changes/markings for revision coming from schedules they have access to. There are two user roles in our system: The schedule's owner and the normal user (users added to a schedule by the owner). The roles are heavily tied to each schedule, and hence, a user can be both a schedule's owner and a normal user at the same time. In this use case, the term user will be used in general when the user role doesn't matter, or when it has been specified in that context. The steps for this use case are:
+
+\begin{enumerate}
+\item User will see a notification badge, together with the total number of notifications, on the top side bar
+\item After clicking on the badge, user will be redirected to a new page with all the notifications information (the person, schedule, and class it comes from)
+	\begin{enumerate}
+	\item For schedule's owner, notifications will see markings for revision coming from other users
+	\item For normal user, notifications will be changes, or `marking for revision' status made by the schedule's owner
+	\end{enumerate}
+\item If notification is a marking for revision, or a change made by the schedule's owner, clicking on the notification will bring the user to the schedule view page with the affected class being focused
+\item If the notification is a marking for revision (for schedule's owner only):
+	\begin{enumerate}
+	\item User right clicks on the notification and select either `Approve' or `Reject'
+	\item If choosing `Reject', system prompts user to enter comment
+	\item If choosing `Reject', user enters comment and clicks `Save', or doesn't enter anything and clicks `Skip'
+	\end{enumerate}
+\item If the notification is a `marking for revision' status (for normal user only), clicking on the notification will show the status and the detailed comment.
+\end{enumerate}
 
 \subsection{Comparing Two Schedules}
 The user will select two existing schedules for comparison.  The system will display the discrepancies between the
@@ -250,9 +301,9 @@ two schedules.  The steps for this use case are:
 \begin{enumerate}
 \item User creates and saves at least two schedules
 \item User navigates to the dashboard page
-\item User selects 'Compare Two Schedules'
+\item User selects `Compare Two Schedules'
 \item System prompts user to select two schedules for comparison
-\item User selects two schedules and selects 'Compare'
+\item User selects two schedules and selects `Compare'
 \item System calculates the differences between the schedules and displays them simultaneously, highlighting the
 differences
 \end{enumerate}
