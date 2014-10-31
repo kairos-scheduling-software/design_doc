@@ -185,6 +185,8 @@ use case are:
 \item System calculates and returns a proposed schedule to user
 \end{enumerate}
 
+See the related Figure~\ref{fig:upload_csv} on page~\pageref{fig:upload_csv}
+
 \subsection{Uploading a CSV File to Create a New Schedule}
 The user will generate a proposed schedule by uploading the required data via a .csv file.  The steps for this use
 case are:
@@ -194,30 +196,24 @@ case are:
 \item User navigates to CSV Import page
 \item System prompts user to enter path to file for upload
 \item User enters path and selects 'Upload'
-
-\item System parses file
-
+\item System attempts to parse scheduling data from file
+  \begin{enumerate}
+  \item If the parse fails
     \begin{enumerate}
-        \item Parse fails
-        \begin{enumerate}
-            \item If a minimal amount of rows fail (\textless 10\%), the user will be prompted to adjust the data
-            \begin{enumerate}
-                \item User is presented with spreadsheet style screen
-                \item Parse fails/succeeds (refer to item 5)
-            \end{enumerate}
-            \item File is rejected
-            \begin{enumerate}
-                \item User is prompted to fix CSV file
-                \item User is presented with file picker  (refer to item 3)
-            \end{enumerate}
-        \end{enumerate}
-        \item Parse succeeds
-        \begin{enumerate}
-            \item User is then prompted to map columns present in CSV file to Kairos known column types using drop-down selectors
-        \end{enumerate}
+    \item Failure is minimal
+      \begin{enumerate}
+        \item System prompts user to adjust data
+        \item User adjusts data
+        \item Return to [5] above
+      \end{enumerate}
+    \item Failure is large
+      \begin{enumerate}
+        \item System informs user of error
+        \item System returns user to Dashboard page
+      \end{enumerate}
     \end{enumerate}
-\item System reads scheduling data from file, calculates and returns a proposed schedule to user
-
+  \end{enumerate}
+\item System calculates and returns a proposed schedule to user
 \end{enumerate}
 
 \subsection{Exporting Schedule as a CSV File}
@@ -286,5 +282,15 @@ system using our api.
 \item The developer will send the request he needs
 \item The system will return json data that the developer can parse and use
 \end{enumerate}
+
+\appendix
+\section{UI Sketches}
+
+\begin{figure}[h!]
+\label{fig:upload_csv}
+\centering
+\includegraphics[width=1.0\textwidth]{upload_page_wireframe}
+\caption{Wireframe of UI for user to upload a CSV file}
+\end{figure}
 
 \end{document}
