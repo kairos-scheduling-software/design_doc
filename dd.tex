@@ -194,7 +194,41 @@ case are:
 \item User navigates to CSV Import page
 \item System prompts user to enter path to file for upload
 \item User enters path and selects 'Upload'
+
+\item System parses file
+
+    \begin{enumerate}
+        \item Parse fails
+        \begin{enumerate}
+            \item If a minimal amount of rows fail (\textless 10\%), the user will be prompted to adjust the data
+            \begin{enumerate}
+                \item User is presented with spreadsheet style screen
+                \item Parse fails/succeeds (refer to item 5)
+            \end{enumerate}
+            \item File is rejected
+            \begin{enumerate}
+                \item User is prompted to fix CSV file
+                \item User is presented with file picker  (refer to item 3)
+            \end{enumerate}
+        \end{enumerate}
+        \item Parse succeeds
+        \begin{enumerate}
+            \item User is then prompted to map columns present in CSV file to Kairos known column types using drop-down selectors
+        \end{enumerate}
+    \end{enumerate}
 \item System reads scheduling data from file, calculates and returns a proposed schedule to user
+
+\end{enumerate}
+
+\subsection{Exporting Schedule as a CSV File}
+The user will download a local copy of a proposed or modified schedule as a .csv file.  The steps for this use
+case are:
+
+\begin{enumerate}
+\item User navigates to one of the View pages on an existing schedule
+\item User clicks Export to CSV option
+\item Browser prompts user to accept download
+\item Browser begins download of CSV file
 \end{enumerate}
 
 % ADD THE RELATED UI SKETCH
