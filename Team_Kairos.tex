@@ -288,17 +288,49 @@ read, understand, and solve.  We will include many code examples to help users g
 \subsubsection{Planned Features}
 The planned features we will implement are:
 \begin{itemize}
-\item \emph{create a new schedule with CSV}
-\item \emph{clone a schedule}
-\item \emph{compare two schedules}
-\item \emph{drag and drop modification of a schedule}
-\item \emph{view schedule by day}
-\item \emph{view schedule by room}
-\item \emph{view a subset of classes}
-
+\item \emph{create a new schedule with CSV} -- Users will be able to upload their classes, professors, and
+classrooms from a CSV file formatted in a manner that we will specify. This will be an alternative to manually
+entering this data through the web interface.
+\item \emph{clone a schedule} -- Users will be able to create a new schedule by copying (cloning) an existing
+schedule.  Schedules are frequently cyclical with many similarities between schedules at the same point in distinct
+cycles.  This feature allows users to take advantage of this fact and still be able to modify the newly cloned
+schedule to account for any cycle-over-cycle changes.
+\item \emph{compare two schedules} -- Users will be able to compare two different schedules and identify the items
+wherein the schedules differ.  The two schedules being compared will be displayed as a single schedule where they
+are identical, with events highlighted where there are differences between the two schedules.
+\item \emph{drag and drop modification of a schedule} %NATE IS SIGNED UP FOR THIS ITEM
+\item \emph{view schedule by day} -- Users will be able to make a selection that will display a single day of a
+weekly schedule.  Doing so will display details that are not visible on the weekly view.
+\item \emph{view schedule by room} -- Users will be able to see all of the classrooms and the classes scheduled for
+each room.
+\item \emph{view a subset of classes} -- Users will be able to select a subset of all classes that make up the
+current schedule and view only these classes.  This feature may be combined with other view features such as viewing
+a single day or viewing a schedule by room.
+\item \emph{import a schedule via CSV} -- Users will be able to upload an entire schedule which consists of classes,
+days and times, professors, and rooms. This will allow users to save locally any of their schedules in CSV format
+and have the option of importing that scheduling back into Kairos at any time they may need to display the schedule.
+\item \emph{support multiple users viewing a schedule} %WHO IS DOING THIS?
+\item \emph{web-scraping tools} %WHO IS DOING THIS?
 \end{itemize}
 
 \subsubsection{Advanced Features}
+Advanced features will be implemented after we complete all of the basic and planned features.  This set of features
+represents those items which we would like to implement but will only do so as time and resources permit.  The
+advanced features are:
+\begin{itemize}
+\item \emph{multi-user schedule editing} %NATE IS SIGNED UP FOR THIS ITEM
+\item \emph{syncing and pulling data from astra.utah.edu} %WHO IS DOING THIS?
+\item \emph{column mapping for CSV import} -- This will augment our CSV import functionality by not requiring the
+user to follow a strict format for their CSV files.  Users will be able to name their columns in a way that makes
+sense to them. When they upload, they will be asked to map their columns to the columns defined by our system.
+\item \emph{email notifications} -- Those parties who want to monitor a specific class for certain changes will be
+able to request email notifications when such events occur.  The emails would be sent, for example, when given
+classes are moved, or enrollment caps are reached or changed.
+\item \emph{ability for professors to modify certain settings} %WHO IS DOING THIS?
+\item \emph{multi-user ticketing system} %WHO IS DOING THIS?
+\item \emph{professor checker} -- This feature will allow users to identify any professors who should have a class
+assigned to them but currently do not.
+\end{itemize}
 
 \newpage
 
