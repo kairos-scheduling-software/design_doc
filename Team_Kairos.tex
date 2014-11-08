@@ -177,9 +177,73 @@ system requirements for users will be a machine running a modern browser with a 
 % ~ if figures take up too much space, put them in an appendix
 % this section should address all the components/modules of your system and how they will communicate
 
+\subsubsection{Constraint Solver}
+At the core of our system will be the constraint solver.  The constraint solver is the software that solves general
+constraint-based scheduling problems.  The solver will receive the parameters of a problem instance from the app
+server and will return a solution back to the app server if one is discovered.  The solver will be written in Java
+and will make use of one or more constraint programming libraries.
+
+A problem instance will be supplied to the solver as a set of activities, a set of resources, a set of constraints,
+and some objective function.  The solver will attempt to fulfill the objective function given the resources and
+constraints and, if successful, will return a solution to the app server.  If it is not possible to fulfill the
+objective function, a message indicating such will be returned.
+
+\subsubsection{App Server}
+The app server will be the means by which the constraint solver communicates with its users.  These users will be
+one of two types.  The first type is the API user.  API users will use the solver to solve general scheduling
+problems.  They are converting their concrete scheduling problems into instances of general constraint problems and
+providing those problem details to the solver.  When they receive a solution they will convert it back in order to
+apply it to their specific scheduling problem.
+
+The second potential user of the app server will be our own Apache server.  Similarly to the API user, the problem
+will be supplied from the Apache server as a general constraint problem.  The difference is that these problems will
+be generated from our implementation of the class scheduler for University of Utah classes.
+
+\subsubsection{Apache Server}
+The Apache server will serve our API documentation website as well as the University of Utah class scheduler site,
+and the School of Computing class scheduler tool.  The API documentation site will be the reference for our API
+users.  It will include all of documentation necessary in order for API users to leverage our solver.  It will
+provide detailed explanations of the methods available as well as code examples.
+
+The University of Utah class scheduler site will presently be a site that will be set up such that departments at
+the University will be easily able to begin using our scheduling tool.  Additionally, it will be extended to fit the
+specific needs of our primary test user, the School of Computing.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=1.0\textwidth]{img/general_sys_arch}
+\caption{Overview of the System}
+\label{fig:sys_arch}
+\end{figure}
+
 \subsection{Personnel}
 % main responsibilities of each team member
 % every team member must contribute substantially
+
+We have five team members that will work together to implement this project in its entirety.  The members are
+Tyler Chapman, Nate Crandall, Vinh Dang, Vince Oveson, and Tony Tuttle.
+
+Tyler's primary responsibilities will be ensuring that the network functions correctly and securely.  As an
+extension to his responsibilities to manage the network, Tyler will be the primary person responsible for
+implementing the server back-end.
+
+Nate's primary responsibility will be to develop the visualization component of the project.  He will be working
+closely with the front-end developer and will use his knowledge of visualization to make sure that our the user
+interface will maximize usability and aethetic appeal.  He will also be responsible for designing and implementing
+the necessary databases.
+
+Vinh's main responsiblity will be implementing tools that are specific to the School of Computing portion of this
+project.  They will need some additional tools such as web scrapers and other peripheral software in order to meet
+their needs.  Vinh will also assist in writing the constraint solver.
+
+Vince's primary responsibility will be designing the UIs and front-end development.  He will use his extensive
+background in web applications to make sure that all of the front-end components function correctly and provide a
+pleasant experience for the user.  He will also be responsible for design and testing of the overall system
+architecture, ensuring that all of the parts are working together correctly.
+
+Finally, Tony's main responsibility will be designing and writing the constraint solver.  He will use his knowledge
+and interest in algorithms and AI to research the best solution and implement it.  As a natural extension to this
+responsibility, he will also be writing the API documentation.
 
 \subsection{System Features}
 % describe the main deliverables at three levels:
