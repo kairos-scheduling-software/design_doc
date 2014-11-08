@@ -252,6 +252,54 @@ responsibility, he will also be writing the API documentation.
 % ~ advanced
 % this should be the largest of the three sub-sections
 
+Each piece of functionality offered by the Kairos system will be part of one of three levels: basic, planned, and
+advanced.  All of the features in the basic level will be sufficient for a user to use the tool at a fundamental
+level.  Once these are implemented we will focus on implementing all of the planned features.  These features will
+provide the functionality that a typical user might expect.  Finally, advanced features are those which we would
+ideally like to implement to make the system more appealing, but that are lower priority.
+
+\subsubsection{Basic Features}
+The basic features we will implement are:
+\begin{itemize}
+\item \emph{create a new schedule manually} -- This feature enables a user to enter each of the classes that need
+to be scheduled, the rooms and professors available for the classes, and any constraints (such as when a class can
+be taught, who can teach a class, any two classes that cannot be taught at the same time).  These details will
+be converted to a general constraint problem, fed to the constraint solver.  A solution, or a message indicating
+that none exist, will be returned to the user.
+\item \emph{weekly schedule view} -- This will be the default visualization that we offer to our users. When the
+system returns a schedule to the user, this is what it will look like. It will display an entire weekly schedule
+on a single page.
+\item \emph{auto-save} -- Auto-save runs in the background for all Kairos sessions.  This feature allows users to 
+make modifications without having to intermittently save session data. This will allow sers to try different
+schedule configurations and commit only when the changes best suit their needs.  Auto-save supports our larger goal
+of minimizing clutter and abstracting details away from the user.
+\item \emph{user login} -- Kairos will provide secure login and registration for users.  Providing users with a
+persisten user id will help secure data and track schedules. It will also allow users to access schedules they have
+previously worked on and allow them to share schedules with other users.
+\item \emph{constraint modification (editing a schedule)} -- Users will be able to modify a proposed schedule by
+adding, removing, or editing classes to be schedules, available professors and rooms, or any constraints on these
+resources.
+\item \emph{API} -- Our API will be accessible through a public website.  Those who wish to use the
+API to solve their own scheduling needs may do so by acquiring an API key.  The API will include detailed
+explanations about how a user may convert a specific scheduling problem into one that our solver will be able to
+read, understand, and solve.  We will include many code examples to help users get started quickly and easily.
+\end{itemize}
+
+\subsubsection{Planned Features}
+The planned features we will implement are:
+\begin{itemize}
+\item \emph{create a new schedule with CSV}
+\item \emph{clone a schedule}
+\item \emph{compare two schedules}
+\item \emph{drag and drop modification of a schedule}
+\item \emph{view schedule by day}
+\item \emph{view schedule by room}
+\item \emph{view a subset of classes}
+
+\end{itemize}
+
+\subsubsection{Advanced Features}
+
 \newpage
 
 \begin{appendices}
