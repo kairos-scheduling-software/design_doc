@@ -340,6 +340,47 @@ ticket if something on the schedule doesn't work for them. The schedule admin wo
 assigned to them but currently do not.
 \end{itemize}
 
+\section{Tools and Techniques}
+As a team, we will use the following software engineering tools and techniques.
+
+\begin{itemize}
+\item \emph{agile vs traditional development -- }\textbf{TODO}
+\item \emph{version control -- }We will use Git for our version control system.  We will have a separate repository
+for each of the main components of our software.  Each repository will use two remote repositories: a master hosted
+on GitHub, and a deployment hosted on our virtual box.  We will use git by following a standard workflow procedure:
+\begin{enumerate}
+\item Prior to beginning work on a new feature or a bug fix, the developer will create a branch from the master
+branch of the repository.
+\item While working on the feature or bug fix, the developer will make regular commits to that new branch.
+\item When the feature/bug fix is finished and has been thoroughly tested, the developer will notify the team that
+the branch is ready to be merged back into the master branch.
+\item After at least one other developer has reviewed and approved the changes made in the branch, it will be
+merged back into the master branch.  Conflicts will be resolved as needed.
+\item When features are ready to "go live" we will push those changes to the deployment repository, which will
+publish the changes to the live website.
+\end{enumerate}
+\item \emph{bug tracking -- }For tracking bugs we will take advantage of GitHub's integrated issue tracker.  This
+will help us keep track of known issues, and give us a place to discuss these issues and monitor our progress on
+resolving them.
+\item \emph{testing -- }Testing will be addressed at two levels.  Each team member will write unit tests for any
+code that they write.  At the holistic level we will use selenium to test our application.  The selenium tests will
+be designed to fail until all required pieces are implemented.
+\item \emph{documentation -- }We will use Javadoc to document any and all of the code written in Java.  The
+remainder of the code base (PHP, JavaScript, etc) will be documented in a style similar to that of Javadoc.
+\item \emph{team communication -- }For team communication we are employing a combination of regular in-person
+meetings and electronic communication.  We meet as a team at least twice per week and more often as necessary.
+Between meetings we communicate using a Google group, Google drive, email, and a Trello page.  This combination of
+tools allows us to have extended discussions via a message board, to assign, complete, and keep track of tasks,
+and to share files.
+\item \emph{team meetings -- }We hold regular team meetings on Monday mornings.  These meetings are designed to 
+discuss upcoming obligations, figure out how we will approach the tasks, assign tasks to individual team members,
+and to discuss any other matters.  We also hold a meeting on Wednesdays, immediately after our meeting with the
+course staff.  This is meeting is designed to be a debriefing session for the staff meeting, and to check-in with
+progress since the Monday meeting.  We hold other planning meetings as necessary and have also discussed holding
+work meetings, either in person or via technology, in order to boost our productivity.  Aligning schedules has
+proven to be a challenge for scheduling working meetings thus far.
+\end{itemize}
+
 \newpage
 
 \begin{appendices}
