@@ -366,6 +366,12 @@ publish the changes to the live website.
 \item \emph{bug tracking -- }For tracking bugs we will take advantage of GitHub's integrated issue tracker.  This
 will help us keep track of known issues, and give us a place to discuss these issues and monitor our progress on
 resolving them.
+\item \emph{code review -- } New code will not be checked into the master Git branch until:
+\begin{enumerate}
+    \item The code has been thoroughly tested and has passed all unit tests.
+    \item The code has been reviewed by at least one other person aside from the primary developer.
+\end{enumerate}
+Major changes and/or features may warrant a more in-depth code review. These will be held on an as-needed basis.
 \item \emph{testing -- }Testing will be addressed at two levels.  Each team member will write unit tests for any
 code that they write.  At the holistic level we will use selenium to test our application.  The selenium tests will
 be designed to fail until all required pieces are implemented.
