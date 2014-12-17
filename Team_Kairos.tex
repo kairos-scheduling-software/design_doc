@@ -1,5 +1,7 @@
 \documentclass{extarticle}
 
+\usepackage{float}
+\restylefloat{table}
 \usepackage{graphicx}
 \usepackage{enumerate}
 \usepackage{amsthm}
@@ -31,16 +33,17 @@
 
 \subsection{Overview}
 % DESCRIBE THE FINAL GOAL OF THE PROJECT
-%   - what the project will do
-The final goal of the project is to provide a highly customizable, open-source, web-based scheduling tool available
-to solve a wide range of scheduling problems.  Our software system will be accessible through a public
-website where users may build, modify, and maintain their solutions.  The system will be capable of solving various
-types of scheduling problems for various types of user needs.
-
 %   - what need it will address
-Scheduling problems are ubiquitous.  Individuals, teams, organizations, and larger entities such as companies all
-must solve scheduling problems of various levels of complexity.  Our tool aims to address the needs of such a wide
-base of potential users.
+Scheduling problems are ubiquitous.  Individuals, teams, organizations, departments and companies all must solve
+scheduling problems of various levels of complexity.  Our tool aims to address the needs of some of these users,
+aiming primarily at small to medium sized entities, and those with sufficient technical expertise to work with an
+API.
+
+%   - what the project will do
+The goal of the Kairos scheduling software is to provide a customizable, open-source, web-based scheduling tool to 
+solve a wide range of scheduling problems.  Our software system will be accessible through a public
+website where users may build, modify, and maintain their solutions.  The system will be capable of solving various
+types of scheduling problems for various user needs.
 
 \subsection{Features and Components}
 % LIST KEY FEATURES AND COMPONENTS
@@ -49,52 +52,55 @@ base of potential users.
 %   - customizable
 %   - well-written API
 %   - thoughtful visualization component
-At its core, Kairos will be a web-based schedule solver; it will accept parameters from the user, specifying the
-details of their particular scheduling problem.  The tool will analyze the input and algorithmically determine a
-schedule that will meet all of the supplied parameters.  If meeting all of the constraints is not possible, it will
-prioritize based on weights and determine what compromises to make in the schedule.
+At the core of Kairos will be a constraint solver that is set up to specifically solve scheduling problems.  The
+user will supply details of their scheduling problem such as the events to schedule, the resources available, and
+any constraints.  The solver will determine first if a schedule exists for all of the events, given the resources
+and constraints.  If so, it will assign a time and place for each event and return this schedule to the user.  If
+a schedule is not possible, it will provide as informative a message as possible to the user indicating as much.
 
-Since the tool will be web-based, it will be open to any and all potential users.  This will further encourage a
-wide breadth of users.
+On the other end of the tool will be the user interface.  Scheduling is a complex problem that produces data that
+can have several dimensions.  Representing this data in a way that does not alienate users is a significant
+challenge.  We will focus on making our visualizations of the complex data as intuitive, aesthetically appealing,
+and simple as possible.
 
-We intend to make the tool extremely customizable by creating a very general schedule solver core.
-We want users to have access to the powerful core components while maintaining sufficient flexibility to fit the
-solution to their specific needs.
+For those users who prefer flexibility and want to design their own interfaces, we will offer an exposed API so
+that they are able to access the solver at the core while building their own UIs and visualization tools around
+the data.  Each user's needs will be unique.  Offering them this option will improve the overall usability of the
+tool.
 
-Part of this customizability will come from working hard to make the API as clear and thorough as possible.  A
-great piece of software may lose potential users if it is not clear to users how best to leverage the software.  We
-intend to encourage a large user base by putting a lot of emphasis on creating a strong API.
+The success of the customizability will depend a clear and thorough API.  A great piece of software may lose
+users if it is not clear how to leverage the software.  We intend to encourage a large user base by putting a lot
+of emphasis on creating a strong API.
 
-Likewise, a great piece of software that lacks intuitiveness or a pleasing user experience will alienate users.
-We will put a great deal of thought and planning into determining how best to use visualization tools to represent
-our data.  Since scheduling is a complex problem that produces data that will need to be viewed from several angles,
-this is a difficult problem in itself.  By making visualization a priority we hope to attract users as opposed to
-driving them away.
+By hosting the solver as well as user data on our server, we will be able to make Kairos a web-based tool.  This is
+another means by which we can attract a wider user base.  Making our tool web-based will eliminate the need for
+users to download and run an application, will allow users to share data with others seamlessly, and will prevent
+users from using out-of-date software.
 
 \subsection{Justification}
 % EXPLAIN WHY THE PROJECT IS INTERESTING AND WORTHWHILE
 %   - why a completed project will be beneficial
-Making this tool available to the public will potentially save individuals a great deal of time, provide
-organizations better scheduling solutions than they currently have, and save a great deal
-of money for businesses and other organizations.  At the very least, it is our hope that we will make life a little
-easier for as many users as possible.
+When Kairos is complete, it can offer a free, customizable tool that could save organizations of various sizes
+a great deal of time and money.  If we are able to attract a sufficient base of users, we will have a wealth of
+feedback to make the tool even better.
 
 \section{Background}
 
 \subsection{Overview} % ONE TO THREE PAGES
 %   - why our project is needed
-The task of creating optimal schedules is a problem that event planners, groups, teams, and other organizations of
-all sizes encounter on a regular basis.  The schedules used by these groups are often created manually.  For all
-but the simplest schedules, this task is extremely complicated and time consuming.  As the complexity increases,
-the difficulty of creating acceptable schedules, much less optimal ones, increases exponentially.
+The task of creating optimal schedules is a problem that event planners, groups, teams, and other organizations
+encounter on a regular basis.  The schedules used by these groups are often created manually.  This process can be
+complicated and time consuming.  As the complexity of the schedule increases, the difficulty of creating the
+schedule increases exponentially.  A tool that is capable of offering several solutions for a user to choose from
+could also prove to be helpful.
 
 %   - what problems it solves
-Moving as much of the work of scheduling from a manual process to one that is solved by a computer is the
-inspiration for Kairos.  Kairos has the potential to save a great deal of time for users.  Kairos will provide a
-better solution for those who need to schedule any but the simplest of events.
+Moving a significant portion of the work of scheduling from a manual process to one that is solved by a computer is
+the inspiration for Kairos.  Kairos can save users a lot of time.  Kairos will provide a better solution for those
+who need to schedule events with even a small amount of complexity.
 
 %   - who will use it
-Since scheduling is a ubiquitous problem, Kairos will be usable to large number of users.  By implementing a
+Since scheduling is such a common problem, Kairos will be attractive to a large number of users.  By implementing a
 well-documented API we intend to attract those who seek a solution that they can tweak to fit their specific needs.
 
 A specific use case that we have identified is the School of Computing at the University of Utah.  We are working
@@ -119,9 +125,10 @@ project management software.  Thus, their software is attempting to address a pr
 are focused on.  Based on reading the literature on their software, it is not clear that the scheduling tools
 provided in MS Project are constraint-based scheduling tools.
 
-Both Aurora and MS Project cost money.  Our software will be free.  Neither Aurora or MS Project are web-based, but
-require installation on any machine that will use the software.  There is certainly room for our tool in this
-space.
+Both Aurora and MS Project cost money.  Our software will be free.  Neither Aurora nor MS Project are web-based, but
+require installation on any machine that will use the software.  Aurora offers users a packaged software system
+customized for a given user.  By offering an exposed API we will allow smaller users to create their own
+customizations.
 
 \subsection{Required Technology}
 % list, describe software technologies that you will:
@@ -391,6 +398,66 @@ work meetings, either in person or via technology, in order to boost our product
 proven to be a challenge for scheduling working meetings thus far.
 \end{itemize}
 
+\section{Time Line}
+
+% columns by team member
+% rows by week
+% each box a single sentence describing the main item that team member C will be working on week R
+% Spring semester broken into three 5-week sections:
+%   alpha
+%   beta
+%   production
+
+% BEGIN ALPHA
+\begin{center}
+\bf{Alpha Phase}
+\begin{table}[H]
+\begin{tabular}{ c || p{3cm} | p{3cm} | p{3cm} | p{3cm} | p{3cm} |}
+ & \bf{Tyler} & \bf{Nate} & \bf{Vinh} & \bf{Vince} & \bf{Tony} \\ \hline
+Jan 18 & Tyler's alpha one sentence & Nate's alpha one sentence & Vinh's alpha one sentence& Vince's alpha one
+sentence & Tony's alpha one sentence \\ \hline
+Jan 25 &          &            &            &              &            \\ \hline
+Feb 1  &          &            &            &              &            \\ \hline
+Feb 8  &          &            &            &              &            \\ \hline
+Feb 15 &          &            &            &              &            \\ \hline
+\end{tabular}
+\end{table}
+\end{center}
+% END ALPHA
+
+%BEGIN BETA
+\begin{center}
+\bf{Beta Phase}
+\begin{table}[H]
+\begin{tabular}{ c || p{3cm} | p{3cm} | p{3cm} | p{3cm} | p{3cm} |}
+ & \bf{Tyler} & \bf{Nate} & \bf{Vinh} & \bf{Vince} & \bf{Tony} \\ \hline
+Feb 22 &          &            &            &              &            \\ \hline
+Mar 1  &          &            &            &              &            \\ \hline
+Mar 8  &          &            &            &              &            \\ \hline
+Mar 15 &          &            &            &              &            \\ \hline
+% NOTE SPRING BREAK WEEK MISSING
+Mar 29 &          &            &            &              &            \\ \hline
+\end{tabular}
+\end{table}
+\end{center}
+% END BETA
+
+% BEGIN PRODUCTION
+\begin{center}
+\bf{Production Phase}
+\begin{table}[H]
+\begin{tabular}{ c || p{3cm} | p{3cm} | p{3cm} | p{3cm} | p{3cm} |}
+ & \bf{Tyler} & \bf{Nate} & \bf{Vinh} & \bf{Vince} & \bf{Tony} \\ \hline
+Apr 5  &          &            &            &              &            \\ \hline
+Apr 12 &          &            &            &              &            \\ \hline
+Apr 19 &          &            &            &              &            \\ \hline
+Apr 26 &          &            &            &              &            \\ \hline
+May 3  &          &            &            &              &            \\ \hline
+\end{tabular}
+\end{table}
+\end{center}
+% END PRODUCTION
+
 \newpage
 
 \begin{appendices}
@@ -446,8 +513,6 @@ case are:
     \item System calculates and returns a proposed schedule to user
 \end{enumerate}
 
-See the related Figure~\ref{fig:upload_page_wireframe} on page~\pageref{fig:upload_page_wireframe}
-
 \subsection{Exporting Schedule as a CSV File}
 The user will download a local copy of a proposed or modified schedule as a .csv file.  The steps for this use
 case are:
@@ -492,7 +557,7 @@ two schedules.  The steps for this use case are:
     differences
 \end{enumerate}
 
-See the related Figure~\ref{fig:compare_page_wireframe} on page~\pageref{fig:compare_page_wireframe}
+%See the related Figure~\ref{fig:compare_page_wireframe} on page~\pageref{fig:compare_page_wireframe}
 
 \subsection{Administrative Tasks}
 The schedule administrator will be able to load, delete, rename, update users who can view the schedule, and accept/reject
@@ -566,19 +631,6 @@ system using our api.
     \label{fig:single-day-view}
 \end{figure}
 
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=1.0\textwidth]{img/upload_page_wireframe}
-    \caption{Wireframe of UI for user to upload a CSV file}
-    \label{fig:upload_page_wireframe}
-\end{figure}
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=1.0\textwidth]{img/compare_page_wireframe}
-    \caption{Wireframe of UI for user to view differences between two schedules}
-    \label{fig:compare_page_wireframe}
-\end{figure}
 \end{appendices}
 
 \end{document}
